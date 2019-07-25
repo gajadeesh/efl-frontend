@@ -404,19 +404,19 @@
       </v-layout>
       <!-- <v-layout row> -->
         <v-layout column class="pa-4">
+          <v-container grid-list-md text-center>
             <v-layout row>
-                <v-flex sm6 class="pr-3 pl-4">
+                <v-flex sm6 class="pr-3 pl-4 pb-4">
           <v-card class="mx-auto text-xs-center" color="grey darken-3" dark>
-            <v-card-text>
+            <!-- <v-card-text> -->
               <!-- <div> -->
-              <VueApexCharts 
-                height=250
+              <VueApexCharts
                 width=380 
                 type="line" 
                 :options="JobsOptions" 
                 :series="JobsSeries"></VueApexCharts>
               <!-- </div> -->
-            </v-card-text>
+            <!-- </v-card-text> -->
             <v-divider></v-divider>
 
             <v-card-actions class="justify-center grey darken-2">
@@ -430,7 +430,6 @@
               <!-- <div> -->
               <VueApexCharts
                 type="line"
-                height=250
                 width=380
                 :options="WeeklyMoveOption"
                 :series="WeeklyMoveSeries"
@@ -445,16 +444,93 @@
           </v-card>
                 </v-flex>
             </v-layout>
+             <v-layout row class="px-4">
+                <v-flex xs12>
+                    <v-card class="mx-auto text-xs-center p-5" color="grey darken-3" dark>
+            <!-- <v-card-text> -->
+              <!-- <div> -->
+              <VueApexCharts
+                type="line"
+                height="320"
+                :options="ShipmentOptions"
+                :series="ShipmentSeries"
+              ></VueApexCharts>
+              <!-- </div> -->
+            <!-- </v-card-text> -->
+            <v-divider></v-divider>
+
+            <v-card-actions class="justify-center grey darken-2">
+              <v-layout row>
+                <v-layout col>
+                  <v-layout row>
+                   <v-btn block flat>On Time Shipments</v-btn>
+                   <v-layout align-left>
+                    <v-icon
+                      color="orange"
+                      class="orange"
+                      style="font-size:11px;height:12px;"
+                    >play_arrow</v-icon>
+                  </v-layout>
+                  </v-layout>
+                </v-layout>
+                <v-layout col>
+                  <v-layout row>
+                  <v-btn block flat>Delayed Shipments</v-btn>
+                  </v-layout>
+                </v-layout>
+              </v-layout>
+             
+            </v-card-actions>
+          </v-card>
+                </v-flex>
+            </v-layout>
+            <v-layout row class="pa-3">
+                <v-flex sm6 class="pr-3 pl-4 pb-4">
+          <v-card class="mx-auto text-xs-center" color="grey darken-3" dark>
+            <!-- <v-card-text> -->
+              <!-- <div> -->
+              <VueApexCharts
+                type="line"
+                width=380
+                :options="WeeklyMoveOption"
+                :series="WeeklyMoveSeries"
+              ></VueApexCharts>
+              <!-- </div> -->
+            <!-- </v-card-text> -->
+            <v-divider></v-divider>
+
+            <v-card-actions class="justify-center grey darken-2">
+              <v-btn block flat>Weekly Cost</v-btn>
+            </v-card-actions>
+          </v-card>
+                </v-flex>
+                <v-flex sm6 class="pr-4 pl-3">
+          <v-card class="mx-auto text-xs-center" color="grey darken-3" dark>
+            <!-- <v-card-text> -->
+              <!-- <div> -->
+              <VueApexCharts
+                type="line"
+                width=380
+                :options="WeeklyMoveOption"
+                :series="WeeklyMoveSeries"
+              ></VueApexCharts>
+              <!-- </div> -->
+            <!-- </v-card-text> -->
+            <v-divider></v-divider>
+
+            <v-card-actions class="justify-center grey darken-2">
+              <v-btn block flat>Weekly Toninage</v-btn>
+            </v-card-actions>
+          </v-card>
+                </v-flex>
+            </v-layout>
+          </v-container>
         </v-layout>
         <!-- <v-layout column class="pa-4"> -->
           
         <!-- </v-layout> -->
       <!-- </v-layout> -->
-      <!-- <v-layout row>
-          <v-flex xs12>
-              hellow
-          </v-flex>
-      </v-layout> -->
+     
     </v-layout>
   </v-app>
 </template>
@@ -476,19 +552,19 @@ export default {
           labels: {
                 show: true,
                 style: {
-                color: 'blue',
-                fontSize: '12px'
+                  color: 'blue',
+                  fontSize: '12px'
                 },
             },
             
         },
          yaxis: {
             labels: {
-                show: true,
-                style: {
+              show: true,
+              style: {
                 color: 'white',
                 fontSize: '12px'
-                },
+              },
             },
             min: 0,
             max: 500
@@ -498,7 +574,8 @@ export default {
             enabled: true,
           },
           markers: {
-            size: 6
+            size: 6,
+           
           }
       },
       JobsSeries: [
@@ -507,17 +584,51 @@ export default {
         }
       ],
 
+      ShipmentOptions: {
+        chart: {
+          toolbar: {
+                show: false
+            },
+        },
+        xaxis: {
+          categories: ["M", "T", "W", "T", "F", "S", "S"],
+          labels: {
+                show: true,
+                style: {
+                  color: 'blue',
+                  fontSize: '12px'
+                },
+            },
+            
+        },
+         yaxis: {
+            labels: {
+              show: true,
+              style: {
+                color: 'white',
+                fontSize: '12px'
+              },
+            },
+            min: 0,
+            max: 500
+          },
+          colors: ['#FFA500'],
+          dataLabels: {
+            enabled: true,
+          },
+          markers: {
+            size: 6,
+           
+          }
+      },
+      ShipmentSeries: [
+        {
+          data: [268, 243, 254, 227, 350, 423]
+        }
+      ],
+
       WeeklyMoveOption: {
         chart: {
-        //   id: "vuechart-example",
-        //   shadow: {
-        //       enabled: true,
-        //       color: '#000',
-        //       top: 18,
-        //       left: 7,
-        //       blur: 10,
-        //       opacity: 1
-        //     },
             toolbar: {
                 show: false
             },
@@ -528,8 +639,8 @@ export default {
           labels: {
                 show: true,
                 style: {
-                color: 'blue',
-                fontSize: '12px'
+                  color: 'blue',
+                  fontSize: '12px'
                 },
             }
         },
