@@ -1,68 +1,58 @@
 <template>
+
+    <v-card max-width='200' flat>
     <v-navigation-drawer
-    height= '100vh'
-    v-model="drawer"
-    :mini-variant.sync="mini"
-    hide-overlay
-    stateless
-  >
-  <v-layout row wrap align-center >
-  <v-flex v-if="!mini" class="pa-5">
-      <v-img  :src="require('@/assets/efl-logo.png')" contain width="50%"/>
-  </v-flex>
-  <v-flex v-else>
-      <v-img :src="require('@/assets/efl-logo.png')" contain width="100%"/>
-  </v-flex>
-  </v-layout>
-    <v-toolbar flat class="transparent">
-      <v-list class="pa-0">
-        <!-- <v-list-tile avatar> -->
+      height= '100vh'
+      v-model="drawer"
+      :mini-variant.sync="mini"
+      permanent
+    >
+      <v-list-item>
+        <v-list-item-avatar>
+         <v-img :src="require('@/assets/efl-logo.png')" contain width="100%"/>
+        </v-list-item-avatar>
 
-          <v-list-tile-action>
-            <v-btn
-              icon
-              @click.stop="mini = !mini"
-            >
-              <v-icon>{{ mini ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}</v-icon>
+        <v-btn
+          icon
+          @click.stop="mini = !mini"
+        >
+          <v-icon>{{ mini ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}</v-icon>
+        </v-btn>
+      </v-list-item>
+
+      <v-list>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+        <v-layout v-if="!mini">
+          <v-btn flat block>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content v-if="!mini" class="pl-3">
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+          </v-btn>
+          </v-layout>
+
+          <v-layout v-else wrap align-center justify-center>
+            
+          <v-list-item-icon icon>
+            <v-btn icon>
+            <v-icon>{{ item.icon }}</v-icon>
             </v-btn>
-          </v-list-tile-action>
-        <!-- </v-list-tile> -->
+          </v-list-item-icon>
+        
+          
+          </v-layout>
+          <v-spacer></v-spacer>
+        </v-list-item>
       </v-list>
-    </v-toolbar>
+    </v-navigation-drawer>
+  </v-card>
 
-    <v-list v-if="!mini" class="px-5" dense>
-      <!-- <v-divider></v-divider> -->
-
-      <v-list-tile
-        v-for="item in items"
-        :key="item.title"
-      >
-        <v-list-tile-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-    <v-list v-else dense>
-      <!-- <v-divider></v-divider> -->
-
-      <v-list-tile
-        v-for="item in items"
-        :key="item.title"
-      >
-        <v-list-tile-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-navigation-drawer>
 </template>
 
 <script>
@@ -70,6 +60,7 @@ export default {
     data(){
         return{
             drawer: true,
+            item: 1,
             items: [
                 { title: 'Dashboard', icon: 'home' },
                 { title: 'Shipments', icon: 'local_shipping' },
