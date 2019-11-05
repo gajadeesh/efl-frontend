@@ -11,14 +11,21 @@
   "dependencies": {
     "apexcharts": "^3.8.2",
     "axios": "^0.19.0",
-    "core-js": "^2.6.5",
+    "core-js": "^2.6.9",
     "express": "^4.17.1",
+    "node-sass": "^4.12.0",
+    "pusher-js": "^5.0.0",
+    "sass-loader": "^7.2.0",
     "serve-static": "^1.14.1",
     "vue": "^2.6.10",
     "vue-apexcharts": "^1.4.0",
+    "vue-beautiful-chat": "^2.2.2",
     "vue-router": "^3.0.3",
+    "vue-socket.io": "^3.0.7",
+    "vue2-google-maps": "^0.10.7",
+    "vuejs-jwt": "^1.1.0",
     "vuelayers": "^0.11.4",
-    "vuetify": "^1.5.16"
+    "vuetify": "^1.5.18"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
